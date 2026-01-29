@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Способности Мияби | ZZZ</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Стили для страницы способностей */
+        .abilities-hero {
+            padding: 120px 0 60px;
+            text-align: center;
+            background: linear-gradient(rgba(15, 12, 41, 0.9), rgba(15, 12, 41, 0.95)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%230f0c29"/><path d="M0,50 Q25,25 50,50 T100,50" stroke="%234fc3f7" stroke-width="0.3" fill="none"/><path d="M0,30 Q40,10 70,40 T100,20" stroke="%23ff6b8b" stroke-width="0.3" fill="none"/></svg>');
+        }
+        
+        .ability-category {
+            margin: 60px 0;
+        }
+        
+        .ability-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .ability-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ability-card:hover {
+            transform: translateY(-5px);
+            border-color: #4fc3f7;
+            box-shadow: 0 10px 25px rgba(79, 195, 247, 0.2);
+        }
+        
+        .ability-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(45deg, #4fc3f7, #6a5acd);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .ability-name {
+            color: #4fc3f7;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+        
+        .ability-type {
+            display: inline-block;
+            padding: 3px 10px;
+            background: rgba(255, 107, 139, 0.2);
+            color: #ff6b8b;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .ability-desc {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        
+        .ability-stats {
+            display: flex;
+            gap: 20px;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .stat {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-value {
+            display: block;
+            color: #4fc3f7;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .skill-combo {
+            background: rgba(79, 195, 247, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #4fc3f7;
+        }
+        
+        .combo-title {
+            color: #4fc3f7;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .combo-steps {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+        
+        .combo-step {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-key {
+            background: #4fc3f7;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .skill-tree {
+            margin: 40px 0;
+        }
+        
+        .tree-node {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .tree-node.unlocked {
+            border-color: #4fc3f7;
+            background: rgba(79, 195, 247, 0.05);
+        }
+        
+        .node-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .node-level {
+            background: #4fc3f7;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .talent-section {
+            margin: 50px 0;
+        }
+        
+        .talent {
+            background: linear-gradient(45deg, rgba(149, 117, 205, 0.1), rgba(79, 195, 247, 0.1));
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(149, 117, 205, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-bolt"></i>
+                <span class="logo-text">Miyabi</span>
+                <span class="logo-sub">ZZZ</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Главная</a></li>
+                <li><a href="bio.html"><i class="fas fa-book"></i> Биография</a></li>
+                <li><a href="abilities.html" class="active"><i class="fas fa-fire"></i> Способности</a></li>
+                <li><a href="gallery.html"><i class="fas fa-images"></i> Галерея</a></li>
+            </ul>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Заголовок -->
+    <div class="abilities-hero">
+        <div class="container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> На главную
+            </a>
+            <h1 class="hero-title">Способности Мияби</h1>
+            <p class="hero-subtitle">Боевой стиль и навыки мастера меча</p>
+        </div>
+    </div>
+
+    <!-- Основной контент -->
+    <main class="container">
+        <!-- Базовые атаки -->
+        <section class="ability-category">
+            <h2 class="section-title"><i class="fas fa-sword"></i> Базовые атаки</h2>
+            
+            <div class="ability-grid">
+                <div class="ability-card">
+                    <div class="ability-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3 class="ability-name">Молниеносный удар</h3>
+                    <span class="ability-type">Обычная атака</span>
+                    <p class="ability-desc">Быстрая серия ударов катаной. Последний удар в комбо наносит дополнительный электрический урон.</p>
+                    <div class="ability-stats">
+                        <div class="stat">
+                            <span class="stat-value">125%</span>
+                            <span class="stat-label">Урон</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">⚡</span>
+                            <span class="stat-label">Эффект</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">Быстро</span>
+                            <span class="stat-label">Скорость</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ability-card">
+                    <div class="ability-icon">
+                        <i class="fas fa-running"></i>
+                    </div>
+                    <h3 class="ability-name">Рывок с ударом</h3>
+                    <span class="ability-type">Атака во время бега</span>
+                    <p class="ability-desc">Быстрый рывок вперед с последующим мощным ударом. Пробивает защиту противников.</p>
+                    <div class="ability-stats">
+                        <div class="stat">
+                            <span class="stat-value">180%</span>
+                            <span class="stat-label">Урон</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">🛡️</span>
+                            <span class="stat-label">Пробитие</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Особые способности -->
+        <section class="ability-category">
+            <h2 class="section-title"><i class="fas fa-star"></i> Особые способности</h2>
+            
+            <div class="ability-grid">
+                <div class="ability-card">
+                    <div class="ability-icon">
+                        <i class="fas fa-cloud-bolt"></i>
+                    </div>
+                    <h3 class="ability-name">Громовой разрез</h3>
+                    <span class="ability-type">Умение (E)</span>
+                    <p class="ability-desc">Выполняет быстрый разрез, наносящий электрический урон по области. При попадании накладывает эффект "Шок".</p>
+                    <div class="ability-stats">
+                        <div class="stat">
+                            <span class="stat-value">8 сек</span>
+                            <span class="stat-label">КД</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">250%</span>
+                            <span class="stat-label">Урон</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ability-card">
+                    <div class="ability-icon">
+                        <i class="fas fa-bolt-lightning"></i>
+                    </div>
+                    <h3 class="ability-name">Небесная кара</h3>
+                    <span class="ability-type">Взрыв стихии (Q)</span>
+                    <p class="ability-desc">Призывает молнию, которая наносит огромный электрический урон по большой области и оглушает противников.</p>
+                    <div class="ability-stats">
+                        <div class="stat">
+                            <span class="stat-value">20 сек</span>
+                            <span class="stat-label">КД</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">500%</span>
+                            <span class="stat-label">Урон</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Комбинации -->
+        <section class="ability-category">
+            <h2 class="section-title"><i class="fas fa-gamepad"></i> Рекомендуемые комбинации</h2>
+            
+            <div class="skill-combo">
+                <h3 class="combo-title"><i class="fas fa-bolt"></i> Базовый комбо</h3>
+                <p>Для максимального урона по одному противнику:</p>
+                <div class="combo-steps">
+                    <div class="combo-step">
+                        <span class="step-key">E</span>
+                        <span>Громовой разрез</span>
+                    </div>
+                    <div class="combo-step">
+                        <span class="step-key">ЛКМ x4</span>
+                        <span>4 базовые атаки</span>
+                    </div>
+                    <div class="combo-step">
+                        <span class="step-key">Q</span>
+                        <span>Небесная кара</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="skill-combo">
+                <h3 class="combo-title"><i class="fas fa-users"></i> Контроль толпы</h3>
+                <p>Для борьбы с группами противников:</p>
+                <div class="combo-steps">
+                    <div class="combo-step">
+                        <span class="step-key">Q</span>
+                        <span>Небесная кара (оглушение)</span>
+                    </div>
+                    <div class="combo-step">
+                        <span class="step-key">E</span>
+                        <span>Громовой разрез по группе</span>
+                    </div>
+                    <div class="combo-step">
+                        <span class="step-key">ЛКМ</span>
+                        <span>Добивание ослабленных целей</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Таланты -->
+        <section class="talent-section">
+            <h2 class="section-title"><i class="fas fa-gem"></i> Таланты и пассивки</h2>
+            
+            <div class="talent">
+                <h3><i class="fas fa-shield-alt"></i> Мастер клинка</h3>
+                <p>Увеличивает урон от критических ударов на 15%. После использования взрыва стихии, шанс крита увеличивается на 25% на 8 секунд.</p>
+            </div>
+            
+            <div class="talent">
+                <h3><i class="fas fa-wind"></i> Молниеносная скорость</h3>
+                <p>После успешного уклонения, следующая атака наносит на 50% больше урона и гарантированно накладывает эффект "Шок".</p>
+            </div>
+            
+            <div class="talent">
+                <h3><i class="fas fa-battery-full"></i> Электрический заряд</h3>
+                <p>При поражении противника с эффектом "Шок", восстанавливает 10% энергии взрыва стихии.</p>
+            </div>
+        </section>
+
+        <!-- Дерево навыков -->
+        <section class="skill-tree">
+            <h2 class="section-title"><i class="fas fa-sitemap"></i> Прокачка навыков</h2>
+            
+            <div class="tree-node unlocked">
+                <div class="node-header">
+                    <h3>Уровень 1: Основы фехтования</h3>
+                    <span class="node-level">Базовый</span>
+                </div>
+                <p>Открывает базовые комбо-атаки и возможность использовать Громовой разрез.</p>
+            </div>
+            
+            <div class="tree-node unlocked">
+                <div class="node-header">
+                    <h3>Уровень 10: Мастер электричества</h3>
+                    <span class="node-level">Средний</span>
+                </div>
+                <p>Открывает Небесную кару и увеличивает урон от электрических атак на 30%.</p>
+            </div>
+            
+            <div class="tree-node">
+                <div class="node-header">
+                    <h3>Уровень 20: Истинная катана</h3>
+                    <span class="node-level">Продвинутый</span>
+                </div>
+                <p>Открывает уникальные комбо и увеличивает скорость атаки на 20%.</p>
+            </div>
+        </section>
+        
+        <!-- Кнопка возврата -->
+        <div style="text-align: center; margin: 50px 0;">
+            <a href="index.html" class="btn btn-primary">
+                <i class="fas fa-home"></i> Вернуться на главную
+            </a>
+        </div>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-bolt"></i> Мияби ZZZ</h3>
+                    <p>Фан-сайт о персонаже из Zenless Zone Zero</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Навигация</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Главная</a></li>
+                        <li><a href="bio.html"><i class="fas fa-chevron-right"></i> Биография</a></li>
+                        <li><a href="abilities.html"><i class="fas fa-chevron-right"></i> Способности</a></li>
+                        <li><a href="gallery.html"><i class="fas fa-chevron-right"></i> Галерея</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Социальные сети</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-discord"></i></a>
+                        <a href="#"><i class="fab fa-reddit"></i></a>
+                    </div>
+                    <p class="footer-note">Официальный сайт: <a href="https://zenless.hoyoverse.com">zenless.hoyoverse.com</a></p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>© 2024 Фан-сайт о Мияби. Zenless Zone Zero - игра от HoYoverse.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
